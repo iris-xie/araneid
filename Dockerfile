@@ -1,4 +1,4 @@
-FROM golang:1.24.9-trixie
+FROM golang:1.25.3-trixie
 
 ENV GOARCH=amd64
 
