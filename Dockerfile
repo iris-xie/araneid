@@ -14,5 +14,9 @@ COPY ./ ./
 
 RUN chmod +x /usr/local/bin/build.sh && apt update && apt install gcc g++ -y && apt autoclean && rm -rf /var/cache/apt
 
+RUN cp zscaler.crt /usr/local/share/ca-certificates/
+
+RUN update-ca-certificates
+
 CMD ["tail", "-f", "/dev/null"]
 
