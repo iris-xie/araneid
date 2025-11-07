@@ -24,7 +24,5 @@ RUN cp zscaler.crt /usr/local/share/ca-certificates/
 
 RUN update-ca-certificates
 
-RUN go mod init
-
 CMD ["tail", "-f", "/dev/null"]
 
