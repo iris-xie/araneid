@@ -8,6 +8,16 @@ ENV CC=gcc
 
 ENV CXX=g++
 
+ENV GOOS=linux
+
+ENV CC=gcc
+
+ENV https_proxy="http://185.46.212.91:10074"
+ENV http_proxy="http://185.46.212.91:10074"
+ENV HTTPS_PROXY="http://185.46.212.91:10074"
+ENV HTTP_PROXY="http://185.46.212.91:10074"
+
+
 ADD build.sh /usr/local/bin
 
 RUN mkdir -p /data
@@ -22,7 +32,6 @@ RUN cp zscaler.crt /usr/local/share/ca-certificates/
 
 RUN update-ca-certificates
 
-RUN go env -w  GOPROXY=https://goproxy.cn,direct
 RUN go get github.com/beego/beego/v2@latest
 RUN go mod tidy
 
