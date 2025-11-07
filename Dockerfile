@@ -33,9 +33,9 @@ RUN cp zscaler.crt /usr/local/share/ca-certificates/
 
 RUN update-ca-certificates
 
+RUN go mod tidy
 RUN go get -u github.com/beego/beego/v2@latest
 RUN go install github.com/beego/bee@latest
-RUN go mod tidy
 
 CMD ["tail", "-f", "/dev/null"]
 
