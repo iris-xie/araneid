@@ -11,6 +11,7 @@ ENV CXX=g++
 ENV GOOS=linux
 
 ENV CC=gcc
+ENV PATH=$PATH:$GOPATH/bin
 
 ENV https_proxy="http://185.46.212.91:10074"
 ENV http_proxy="http://185.46.212.91:10074"
@@ -32,7 +33,8 @@ RUN cp zscaler.crt /usr/local/share/ca-certificates/
 
 RUN update-ca-certificates
 
-RUN go get github.com/beego/beego/v2@latest
+RUN go get -u github.com/beego/beego/v2@latest
+RUN go install github.com/beego/bee
 RUN go mod tidy
 
 CMD ["tail", "-f", "/dev/null"]
