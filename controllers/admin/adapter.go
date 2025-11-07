@@ -1,9 +1,9 @@
 package admin
 
 import (
-	"fmt"
-	"github.com/beatrice950201/araneid/controllers"
-	"github.com/beatrice950201/araneid/extend/service"
+	_ "fmt"
+	_ "github.com/beatrice950201/araneid/controllers"
+	_ "github.com/beatrice950201/araneid/extend/service"
 )
 
 /** 蜘蛛池栏目转换工具 **/

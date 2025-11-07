@@ -4,16 +4,16 @@ import (
 	"crypto/md5"
 	"encoding/hex"
 	"encoding/json"
-	"errors"
+	_ "errors"
 	"fmt"
 	"github.com/astaxie/beego"
-	"github.com/astaxie/beego/logs"
+	_ "github.com/astaxie/beego/logs"
 	"github.com/astaxie/beego/orm"
 	table "github.com/beatrice950201/araneid/extend/func"
 	"github.com/beatrice950201/araneid/extend/model/spider"
-	"github.com/go-playground/validator"
+	_ "github.com/go-playground/validator"
 	"github.com/tencentcloud/tencentcloud-sdk-go/tencentcloud/common"
-	tencent "github.com/tencentcloud/tencentcloud-sdk-go/tencentcloud/common/errors"
+	_ "github.com/tencentcloud/tencentcloud-sdk-go/tencentcloud/common/errors"
 	"github.com/tencentcloud/tencentcloud-sdk-go/tencentcloud/common/profile"
 	nlp "github.com/tencentcloud/tencentcloud-sdk-go/tencentcloud/nlp/v20190408"
 	"io/ioutil"
@@ -94,9 +94,11 @@ func (service *DefaultDisguiseService) Dec(id int) error {
 	return errorMessage
 }
 
-/***************************自然语言算法处理中心 *****************************************8/
-/** 作为等价交换手段 **/
-func (service *DefaultDisguiseService) modifierContext(s string, keyword []*nlp.Keyword) string {
+/*
+**************************自然语言算法处理中心 *****************************************8/
+/** 作为等价交换手段 *
+*/
+/*func (service *DefaultDisguiseService) modifierContext(s string, keyword []*nlp.Keyword) string {
 	for _, v := range keyword {
 		if thesaurus := new(DefaultRobotService).OneString(v.Word); thesaurus.Id > 0 && thesaurus.Resemblance != "" {
 			maps := strings.Split(thesaurus.Resemblance, ",")
@@ -106,8 +108,9 @@ func (service *DefaultDisguiseService) modifierContext(s string, keyword []*nlp.
 			logs.Error(fmt.Sprintf(`%s的同义词在数据库未找到～`, *v.Word))
 		}
 	}
+	s = ""
 	return s
-}
+}*/
 
 /** 公用请求函数 **/
 func (service *DefaultDisguiseService) requestPostForm(domain string, v url.Values) (map[string]interface{}, error) {
@@ -130,14 +133,14 @@ func (service *DefaultDisguiseService) md5Value(str string) string {
 }
 
 /** 自然语言处理入口 **/
-func (service *DefaultDisguiseService) DisguiseHandleManage(disguise int, module *spider.HandleModule) (*spider.HandleModule, error) {
+/*func (service *DefaultDisguiseService) DisguiseHandleManage(disguise int, module *spider.HandleModule) (*spider.HandleModule, error) {
 	var verify = DefaultBaseVerify{}
 	if message := verify.Begin().Struct(module); message == nil {
 		return service.handleManageBegin(disguise, module)
 	} else {
 		return module, errors.New(verify.Translate(message.(validator.ValidationErrors)))
 	}
-}
+}*/
 
 /** 将map转为json字符串 **/
 func (service *DefaultDisguiseService) jsonFormString(maps map[string]string) string {
@@ -169,7 +172,7 @@ func (service *DefaultDisguiseService) nlpInstance(disguise int) (*nlp.Client, e
 }
 
 /** 初始化关键字环境 **/
-func (service *DefaultDisguiseService) handleManageBeginKeyword(disguise int, module *spider.HandleModule) ([]*nlp.Keyword, error) {
+/*func (service *DefaultDisguiseService) handleManageBeginKeyword(disguise int, module *spider.HandleModule) ([]*nlp.Keyword, error) {
 	if client, message := service.nlpInstance(disguise); message == nil {
 		var response *nlp.KeywordsExtractionResponse
 		request := nlp.NewKeywordsExtractionRequest()
@@ -185,10 +188,10 @@ func (service *DefaultDisguiseService) handleManageBeginKeyword(disguise int, mo
 	} else {
 		return nil, message
 	}
-}
+}*/
 
 /** 获取真是关键字**/
-func (service *DefaultDisguiseService) robotKeywordManage(keyword []*nlp.Keyword, disguise int) string {
+/*func (service *DefaultDisguiseService) robotKeywordManage(keyword []*nlp.Keyword, disguise int) string {
 	var result string
 	var object, _ = service.Find(disguise)
 	for i, v := range keyword {
@@ -200,10 +203,10 @@ func (service *DefaultDisguiseService) robotKeywordManage(keyword []*nlp.Keyword
 		service.setRobotKeywordManage(v.Word, disguise)
 	}
 	return strings.Trim(result, ",")
-}
+}*/
 
 /*** 从训练模型提取不到关键词；需要写入; **/
-func (service *DefaultDisguiseService) setRobotKeywordManage(keyword *string, disguise int) {
+/*func (service *DefaultDisguiseService) setRobotKeywordManage(keyword *string, disguise int) {
 	if new(DefaultRobotService).OneString(keyword).Id <= 0 && *keyword != "" {
 		maps, message := service.resemblanceTags(keyword, disguise)
 		if message == nil || len(maps) > 0 {
@@ -214,10 +217,10 @@ func (service *DefaultDisguiseService) setRobotKeywordManage(keyword *string, di
 			result = append(result, *value)
 		}
 	}
-}
+}*/
 
 /*** 获得同义词; **/
-func (service *DefaultDisguiseService) resemblanceTags(s *string, disguise int) ([]*string, error) {
+/*func (service *DefaultDisguiseService) resemblanceTags(s *string, disguise int) ([]*string, error) {
 	if client, message := service.nlpInstance(disguise); message == nil {
 		var response *nlp.SimilarWordsResponse
 		request := nlp.NewSimilarWordsRequest()
@@ -231,10 +234,10 @@ func (service *DefaultDisguiseService) resemblanceTags(s *string, disguise int) 
 	} else {
 		return nil, message
 	}
-}
+}*/
 
 /** 开始处理 **/
-func (service *DefaultDisguiseService) handleManageBegin(disguise int, module *spider.HandleModule) (*spider.HandleModule, error) {
+/*func (service *DefaultDisguiseService) handleManageBegin(disguise int, module *spider.HandleModule) (*spider.HandleModule, error) {
 	keyword, message := service.handleManageBeginKeyword(disguise, module)
 	if message != nil {
 		logs.Error("提取关键字失败！失败原因：%s", message)
@@ -247,10 +250,10 @@ func (service *DefaultDisguiseService) handleManageBegin(disguise int, module *s
 	module.Context = service.robotContextManage(module.Context, disguise, keyword)
 	module.Title = service.robotTitleManage(module.Title, disguise, keyword)
 	return module, message
-}
+}*/
 
 /** 提取文档描述 **/
-func (service *DefaultDisguiseService) robotDescriptionManage(module *spider.HandleModule, disguise int, keyword []*nlp.Keyword) string {
+/*func (service *DefaultDisguiseService) robotDescriptionManage(module *spider.HandleModule, disguise int, keyword []*nlp.Keyword) string {
 	object, _ := service.Find(disguise)
 	if client, message := service.nlpInstance(disguise); message == nil && object.Description == 1 {
 		var response *nlp.AutoSummarizationResponse
@@ -270,10 +273,10 @@ func (service *DefaultDisguiseService) robotDescriptionManage(module *spider.Han
 		module.Description = service.modifierContext(module.Description, keyword)
 	}
 	return service.contextFiltration(module.Description)
-}
+}*/
 
 /** 提取内容；重建结构 todo 同义词替换未做 ***/
-func (service *DefaultDisguiseService) robotContextManage(s string, d int, keyword []*nlp.Keyword) string {
+/*func (service *DefaultDisguiseService) robotContextManage(s string, d int, keyword []*nlp.Keyword) string {
 	object, _ := service.Find(d)
 	s = service.contextFiltration(s)
 	if object.Modifier == 1 {
@@ -291,17 +294,17 @@ func (service *DefaultDisguiseService) robotContextManage(s string, d int, keywo
 		}
 	}
 	return s
-}
+}*/
 
 /** 文档标题处理 todo 同义词替换未做 ***/
-func (service *DefaultDisguiseService) robotTitleManage(s string, d int, keyword []*nlp.Keyword) string {
+/*func (service *DefaultDisguiseService) robotTitleManage(s string, d int, keyword []*nlp.Keyword) string {
 	object, _ := service.Find(d)
 	s = service.contextFiltration(s)
 	if object.Modifier == 1 {
 		s = service.modifierContext(s, keyword)
 	}
 	return s
-}
+}*/
 
 /************************************************表格渲染机制 ************************************************************/
 

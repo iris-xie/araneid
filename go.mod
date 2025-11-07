@@ -60,3 +60,7 @@ require (
 	gopkg.in/go-playground/validator.v9 v9.31.0 // indirect
 	gopkg.in/yaml.v2 v2.2.8 // indirect
 )
+
+replace (
+	github.com/beatrice950201/araneid => ../araneid
+)
