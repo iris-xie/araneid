@@ -2,14 +2,12 @@ package admin
 
 import (
 	"errors"
-	"github.com/360EntSecGroup-Skylar/excelize"
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/orm"
 	"github.com/beatrice950201/araneid/controllers"
 	_func "github.com/beatrice950201/araneid/extend/func"
 	"github.com/beatrice950201/araneid/extend/model/spider"
 	"github.com/go-playground/validator"
-	"strconv"
 )
 
 /** 蜘蛛池资源栏目库管理 **/
@@ -38,7 +36,7 @@ func (c *Class) Index() {
 }
 
 // @router /class/import [get,post]
-func (c *Class) Import() {
+/*func (c *Class) Import() {
 	model, _ := c.GetInt(":model", 0)
 	if c.IsAjax() {
 		file := c.GetMustInt("files", "请上传正确格式的xlsx文件！")
@@ -73,7 +71,7 @@ func (c *Class) Import() {
 		}
 	}
 	c.Data["model"] = model
-}
+}*/
 
 // @router /class/create [get,post]
 func (c *Class) Create() {

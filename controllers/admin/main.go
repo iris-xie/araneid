@@ -40,14 +40,14 @@ type Main struct {
 	arachnidService     service.DefaultArachnidService
 	keywordService      service.DefaultKeywordService
 	indexesService      service.DefaultIndexesService
-	adapterService      service.DefaultAdapterService
-	domainService       service.DefaultDomainService
-	categoryService     service.DefaultCategoryService
-	detailService       service.DefaultDetailService
-	adminService        service.DefaultAdminService
-	automaticService    service.DefaultAutomaticService
-	journalService      service.DefaultJournalService
-	movieService        service.DefaultMovieService
+	//adapterService      service.DefaultAdapterService
+	domainService    service.DefaultDomainService
+	categoryService  service.DefaultCategoryService
+	detailService    service.DefaultDetailService
+	adminService     service.DefaultAdminService
+	automaticService service.DefaultAutomaticService
+	journalService   service.DefaultJournalService
+	movieService     service.DefaultMovieService
 }
 
 /** 准备下一级构造函数 **/

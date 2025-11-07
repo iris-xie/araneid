@@ -1,14 +1,12 @@
 package admin
 
 import (
-	"github.com/360EntSecGroup-Skylar/excelize"
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/orm"
 	"github.com/beatrice950201/araneid/controllers"
 	_func "github.com/beatrice950201/araneid/extend/func"
 	"github.com/beatrice950201/araneid/extend/model/spider"
 	"github.com/go-playground/validator"
-	"strconv"
 )
 
 /** 蜘蛛池关键词管理 **/
@@ -60,7 +58,7 @@ func (c *Keyword) Create() {
 }
 
 // @router /keyword/import [get,post]
-func (c *Keyword) Import() {
+/*func (c *Keyword) Import() {
 	arachnid := c.GetMustInt(":arachnid", "非法请求～")
 	if c.IsAjax() {
 		file := c.GetMustInt("files", "请上传正确格式的xlsx文件！")
@@ -89,7 +87,7 @@ func (c *Keyword) Import() {
 		}
 	}
 	c.Data["arachnid"] = arachnid
-}
+}*/
 
 // @router /keyword/edit [get,post]
 func (c *Keyword) Edit() {
