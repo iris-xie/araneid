@@ -10,9 +10,7 @@ ENV CXX=g++
 
 ADD build.sh /usr/local/bin
 
-RUN mkdir -p /data/
-
-ENV GOPATH=/data
+RUN mkdir -p /data
 
 WORKDIR /data
 
@@ -23,6 +21,8 @@ RUN chmod +x /usr/local/bin/build.sh && apt update && apt install gcc g++ -y && 
 RUN cp zscaler.crt /usr/local/share/ca-certificates/
 
 RUN update-ca-certificates
+
+RUN go get github.com/beego/beego/v2@latest && go mod tidy
 
 CMD ["tail", "-f", "/dev/null"]
 
