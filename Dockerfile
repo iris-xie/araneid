@@ -35,6 +35,7 @@ RUN update-ca-certificates
 
 RUN go mod tidy
 RUN go get -u github.com/beego/beego/v2@latest
+RUN go get github.com/go-sql-driver/mysql@v1.8.1
 RUN go install github.com/beego/bee@latest
 
 CMD ["tail", "-f", "/dev/null"]
