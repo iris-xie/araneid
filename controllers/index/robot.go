@@ -1,7 +1,6 @@
 package index
 
 import (
-	"github.com/beatrice950201/araneid/controllers"
 	"github.com/beatrice950201/araneid/extend/model/spider"
 )
 
@@ -21,7 +20,7 @@ func (c *Robot) NextPrepare() {
 }
 
 // @router /robot/robot [post]
-func (c *Robot) Robot() {
+/*func (c *Robot) Robot() {
 	title := c.GetMustString("title", "原始标题字段不能为空！")
 	context := c.GetMustString("context", "原始内容字段不能为空！")
 	Keyword := c.GetMustString("Keyword", "原始关键字不能为空！")
@@ -34,4 +33,4 @@ func (c *Robot) Robot() {
 	} else {
 		c.Succeed(&controllers.ResultJson{Message: "ok", Data: res})
 	}
-}
+}*/
