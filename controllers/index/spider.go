@@ -1,11 +1,9 @@
 package index
 
 import (
-	"encoding/json"
 	"errors"
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/orm"
-	"github.com/beatrice950201/araneid/controllers"
 	"github.com/beatrice950201/araneid/extend/model/spider"
 	"github.com/go-playground/validator"
 )
@@ -23,7 +21,7 @@ func (c *Spider) NextPrepare() {
 }
 
 // @router /spider/api [get,post]
-func (c *Spider) Api() {
+/*func (c *Spider) Api() {
 	password := c.GetMustString("password", "验证器密码是空的！")
 	if password == c.Password {
 		if e := c.ResultInsert(c.ResultMaps()); e != nil {
@@ -34,10 +32,10 @@ func (c *Spider) Api() {
 	} else {
 		c.Fail(&controllers.ResultJson{Message: "验证器密码错误！"})
 	}
-}
+}*/
 
 /*** 接受内容包解析 **/
-func (c *Spider) ResultMaps() spider.Article {
+/*func (c *Spider) ResultMaps() spider.Article {
 	result := c.GetMustString("result", "采集资源包是空的！")
 	var mapsResult spider.Article
 	e := json.Unmarshal([]byte(result), &mapsResult)
@@ -58,7 +56,7 @@ func (c *Spider) ResultMaps() spider.Article {
 		mapsResult.Context = res.Context
 	}
 	return mapsResult
-}
+}*/
 
 /** 更新或者插入 **/
 func (c *Spider) ResultInsert(res spider.Article) (err error) {
