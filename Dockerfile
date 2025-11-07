@@ -21,11 +21,11 @@ ENV HTTP_PROXY="http://185.46.212.91:10074"
 
 ADD build.sh /usr/local/bin
 
-RUN mkdir -p /data
+RUN mkdir -p /data/araneid
 
-WORKDIR /data
+WORKDIR /data/araneid
 
-COPY ./ /data/
+COPY ./ /data/araneid/
 
 RUN chmod +x /usr/local/bin/build.sh && apt update && apt install gcc g++ -y && apt autoclean && rm -rf /var/cache/apt
 
