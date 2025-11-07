@@ -4,7 +4,6 @@ import (
 	"github.com/go-playground/locales/zh"
 	ut "github.com/go-playground/universal-translator"
 	"github.com/go-playground/validator"
-	translations "github.com/go-playground/validator/translations/zh"
 	"reflect"
 )
 
@@ -24,7 +23,7 @@ func (v *DefaultBaseVerify) Begin() *validator.Validate {
 		}
 		return label
 	})
-	_ = translations.RegisterDefaultTranslations(v.validate, v.translation)
+	/*_ = translations.RegisterDefaultTranslations(v.validate, v.translation)*/
 	return v.validate
 }
 
