@@ -22,6 +22,7 @@ RUN cp zscaler.crt /usr/local/share/ca-certificates/
 
 RUN update-ca-certificates
 
+RUN go env -w  GOPROXY=https://goproxy.cn,direct
 RUN go get github.com/beego/beego/v2@latest
 RUN go mod tidy
 
