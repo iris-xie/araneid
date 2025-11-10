@@ -43,12 +43,12 @@ func (c *Base) Prepare() {
 /** 域名鉴权 **/
 func (c *Base) DomainCheck(callback func(string, string) (bool, string, string)) {
 	domain := strings.Split(c.Ctx.Input.Domain(), ".")
+	var (
+		is      bool
+		title   string
+		context string
+	)
 	if len(domain) == 2 || len(domain) == 3 {
-		var (
-			is      bool
-			title   string
-			context string
-		)
 		if len(domain) == 2 {
 			is, title, context = callback("", fmt.Sprintf("%s.%s", domain[0], domain[1]))
 		} else {
@@ -58,7 +58,8 @@ func (c *Base) DomainCheck(callback func(string, string) (bool, string, string))
 			c.Abort500(title, context)
 		}
 	} else {
-		c.Abort500("域名解析错误", "域名不合法！请检查您的域名解析配置流程以及域名格式;")
+		//c.Abort500("域名解析错误", "域名不合法！请检查您的域名解析配置流程以及域名格式;")
+		is, title, context = callback("", fmt.Sprintf("%s.%s", "", ""))
 	}
 }
 
