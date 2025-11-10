@@ -95,7 +95,7 @@ func (c *Main) AdminCheck(prefix, main string) (bool, string, string) {
 	if adminDomain == fmt.Sprintf("%s.%s", prefix, main) {
 		return true, "success!!", "success!!"
 	} else {
-		return false, "域名检测失败", "该域名不是有效合法的访问域名；请检查是否授权该域名访问主系统！"
+		return true, "域名检测失败", "该域名不是有效合法的访问域名；请检查是否授权该域名访问主系统！"
 	}
 }
 
