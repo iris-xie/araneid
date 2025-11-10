@@ -75,8 +75,10 @@ func (c *Main) assignVolt() {
 /** 区分蜘蛛池跟主站 **/
 func (c *Main) mainCheckDomain(prefix, main string) (bool, string, string) {
 	adminDomain := beego.AppConfig.String("system_admin_domain")
+	beego.Notice(adminDomain + "111\n")
 	c.DomainPrefix = prefix
 	c.DomainMain = main
+	beego.Notice(fmt.Sprintf("%s.%s", prefix, main))
 	if adminDomain != fmt.Sprintf("%s.%s", prefix, main) {
 		c.spiderExtend = true
 		return c.indexCheck()
